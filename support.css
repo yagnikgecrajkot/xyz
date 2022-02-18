@@ -1,0 +1,154 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nanum+Pen+Script&display=swap"); */
+
+@import url("./font/css/general-sans.css");
+
+body {
+	/* font-family: "Poppins", sans-serif; */
+	/* font-family: "Inter", sans-serif; */
+	font-family: "GeneralSans-Variable";
+}
+
+h1 {
+	font-size: 4.5rem;
+	line-height: 5rem;
+	font-weight: 600;
+}
+h2 {
+	font-size: 3rem;
+	line-height: 4rem;
+	font-weight: 600;
+}
+h3 {
+	font-size: 2.5rem;
+	line-height: 3.375rem;
+	font-weight: 700;
+}
+h4 {
+	font-size: 1.75rem;
+	line-height: 2.5rem;
+	font-weight: 700;
+}
+h5 {
+	font-size: 1.5rem;
+	line-height: 2rem;
+	font-weight: 700;
+}
+h6 {
+	font-size: 1.25rem;
+	line-height: 1.875rem;
+	font-weight: 400;
+}
+
+.subtitle1 {
+	font-size: 1.125rem;
+	line-height: 1.75rem;
+	font-weight: 700;
+}
+
+.subtitle2 {
+	font-size: 1.125rem;
+	line-height: 1.75rem;
+	font-weight: 500;
+}
+
+.lead1 {
+	/* font-size: 1.25rem; */
+	line-height: 150%;
+	letter-spacing: 0.08px;
+	font-weight: 500;
+}
+
+.lead2 {
+	font-size: 0.875rem;
+	line-height: 1.5rem;
+	font-weight: 500;
+}
+
+.body1 {
+	font-size: 1rem;
+	line-height: 1.625rem;
+	font-weight: 400;
+	letter-spacing: 0.8px;
+}
+.body2 {
+	font-size: 0.875rem;
+	line-height: 1.375rem;
+	font-weight: 400;
+}
+
+.body3 {
+	font-size: 1.125rem;
+	line-height: 2rem;
+	font-weight: 500;
+	letter-spacing: 0.01em;
+}
+.lgLabel {
+	font-size: 1.25rem;
+	line-height: 1.875rem;
+	font-weight: 600;
+}
+.mdLabel {
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	font-weight: 600;
+}
+.smLabel {
+	font-size: 0.75rem;
+	line-height: 1rem;
+	font-weight: 600;
+}
+
+.capitalised {
+	font-size: 0.875rem;
+	line-height: 1.125rem;
+	font-weight: 800;
+	letter-spacing: 0.125rem;
+	text-transform: uppercase;
+}
+.badge {
+	font-family: "Nanum Pen Script", cursive;
+	font-size: 1.25rem;
+	line-height: 1.5rem;
+}
+
+.splash {
+	background: transparent url("./Assets/splash.png") center center/contain
+		no-repeat;
+	padding: auto 1rem;
+	text-shadow: -1px 0 #fff5, 0 1px #fff5, 1px 0 #fff5, 0 -1px #fff5;
+	-webkit-text-shadow: -1px 0 #fff5, 0 1px #fff5, 1px 0 #fff5, 0 -1px #fff5;
+	-moz-text-shadow: -1px 0 #fff5, 0 1px #fff5, 1px 0 #fff5, 0 -1px #fff5;
+}
+
+.label {
+	color: #111827;
+	font-size: 0.85rem;
+	padding: 0.2rem;
+	font-weight: 500;
+ }
+.input {
+	appearance: none;
+	 
+
+	display: block;
+	width: 100%;
+	min-width: 200px;
+	padding: 0.75rem 0.5rem;
+	border: 2px solid #aaa;
+	color: #111827;
+	font-size: 1rem;
+	border-radius: 0.5rem;
+	background-color: #fff;
+}
+
+.input:focus {
+	outline: none;
+	border-color: #045cbb;
+}
+
+.input::placeholder {
+	color: #808080;
+	font-size: inherit;
+	font-weight: inherit;
+}

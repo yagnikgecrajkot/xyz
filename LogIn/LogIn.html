@@ -1,0 +1,178 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G-Medicine | Log In</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+    integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <link rel="stylesheet" href="LogIn.css">
+  <link rel="stylesheet" href="support.css">
+  <link rel="stylesheet" href="tailwind.css">
+</head>
+
+<body>
+  <nav class="bg-gray-900 sticky z-40 left-0 right-0 top-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative flex items-center justify-between h-16">
+        <div class="flex-1 flex items-center sm:items-stretch justify-start">
+          <!-- logo  -->
+          <div class="flex-shrink-0 flex items-center text-white text-2xl font-bold">
+            <a href="">G-Medicine</a>
+          </div>
+        </div>
+        <!-- cta buttons -->
+        <div class="hidden sm:block self-center">
+          <div class="flex gap-4">
+            <a class="text-white bg-gray-800 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-md body1"
+              href="/SignUp/SignUp.html">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <section class="bg-white mt-40">
+    <div class="max-w-7xl mx-auto py-8 px-2 sm:px-6 lg:px-8">
+      <div class="relative h-96 w-full flex justify-center items-center">
+        <div
+          class=" absolute -top-44 bg-white border-gray-900 border-2 shadow-lg p-4 md:p-8 pt-6 md:pt-8 rounded-xl md:rounded-3xl w-2/5 max-w-2xl mx-auto flex flex-col gap-4">
+          <div>
+            <div class="m-5 flex flex-col items-center justify-center">
+              <img src="/img/Screenshot (15).png" alt="">
+              <h1 class="text-2xl font-bold">Log in to your account</h1>
+            </div>
+            <div class="m-1">
+              <label for="message" class="label flex p-1 pt-2">User Name</label>
+              <input type="text" placeholder="username" id="userInp"
+                class="form-control mb-1 p-2 w-full border-2 rounded-2xl flex flex-col items-center justify-center">
+            </div>
+            <div class="m-1">
+              <label for="password" class="label flex p-1 pt-2">Password</label>
+              <input type="password" placeholder="type your password" id="passInp"
+                class="form-control mb-1 p-2 w-full border-2 rounded-2xl flex flex-col items-center justify-center">
+            </div>
+            <div class="form-check form-switch p-3">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+              <label class="form-check-label" for="flexSwitchCheckDefault">Keep me logged In</label>
+            </div>
+          </div>
+          <div>
+            <div>
+              <button id="sub_btn" class="text-white w-full bg-blue-600 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md subtitle2">Log In</button>
+            </div>
+          </div>
+          <div>
+            <div>
+              <a href="/SignUp/SignUp.html" class="text-blue-600 lead1 float-right">
+                Don't have an account?
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCWb34Gr_TURB3OBjIm_79DqUl939jaF3w",
+      authDomain: "nn-game-guidez-a009a.firebaseapp.com",
+      databaseURL: "https://nn-game-guidez-a009a-default-rtdb.firebaseio.com",
+      projectId: "nn-game-guidez-a009a",
+      storageBucket: "nn-game-guidez-a009a.appspot.com",
+      messagingSenderId: "997726760157",
+      appId: "1:997726760157:web:6150d95ccc2830895a3f34",
+      measurementId: "G-8RE6C40C3E"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    import { getDatabase, ref, set, child, get }
+      from "https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js"
+
+    const db = getDatabase();
+
+    //-----------------------------------THE REFERNECES-----------------------------------//
+
+    const username = document.getElementById('userInp');
+    const pass = document.getElementById('passInp');
+    const submit = document.getElementById('sub_btn');
+
+    //-----------------------------------AUTHENTICATION PROCESS-----------------------------------//
+
+    function AuthenticateUser() {
+      console.log(1);
+      const dbref = ref(db);
+      get(child(dbref, "UsersList/" + username.value)).then((snapshot) => {
+        if (snapshot.exists()) {
+          let dbpass = decPass(snapshot.val().password);
+          console.log(2);
+          if (dbpass == pass.value) {
+            console.log(3);
+            login(snapshot.val());
+          }
+          else {
+            console.log(4);
+            alert("user dose not exist");
+          }
+          console.log(5);
+          
+        }
+        else {
+          console.log(6);
+          alert("username or password is invalid");
+        }
+        console.log(7);
+      });
+      console.log(8);
+    }
+    
+    //-----------------------------------ASSIGN THE EVENT-----------------------------------//
+
+    function decPass(dbpass) {
+      console.log(9);
+      var pass12 = CryptoJS.AES.decrypt(dbpass, pass.value);
+      console.log(10);
+      return pass12.toString(CryptoJS.enc.Utf8);
+    }
+    
+    //-----------------------------------LOGIN-----------------------------------//
+    
+    
+    function login(user) {
+      console.log(11);
+      let keepLoggedIn = document.getElementById('flexSwitchCheckDefault').checked;
+
+      if (!keepLoggedIn) {
+        console.log(12);
+        sessionStorage.setItem('user', JSON.stringify(user));
+        window.location = "/index.html";
+      }
+      else {
+        console.log(13);
+        localStorage.setItem('keepLoggedIn', 'yes');
+        localStorage.setItem('user', JSON.stringify(user));
+        window.location = "/index.html";
+      }
+    }
+    
+    //-----------------------------------ASSIGN THE EVENT-----------------------------------//
+    
+    console.log(14);
+    // submit.addEventListener('click', AuthenticateUser);
+    submit.addEventListener('click', AuthenticateUser);
+
+    console.log(15);
+    
+
+  </script>
+
+</body>
+
+</html>
